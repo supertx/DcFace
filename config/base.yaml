@@ -1,0 +1,27 @@
+EXPERIMENT:
+    LOGIT_STAND: True
+KD:
+    TEMPERATURE: 4
+    LOSS:
+        T_WEIGHT: 0.7
+        FCD_WEIGHT: 0.3
+        KD_WEIGHT: 0.3
+        QUEUE_SIZE: 1000
+        T_TEMPERATURE: 0.1
+    EMA_START: 999
+    EMA_ALPHA: 0.9
+SOLVER:
+    PRINT_FREQ: 200
+    SAVE_STEP: 1
+PRELOAD_BATCH: 1024
+LOG:
+    FREQUENCY: 1
+    IJB_FREQUENCY: 3
+DDP:
+    USE_DDP: False
+    WORLD_SIZE: 2
+EVAL:
+    DATASET_PATH: "/data/tx/MS1MV3"
+    EVAL_DATASET: ["lfw"]
+    EVAL_EPOCH: False
+    MODEL_PATH: "./models/train_data/"

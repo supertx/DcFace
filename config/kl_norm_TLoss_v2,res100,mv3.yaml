@@ -1,0 +1,32 @@
+EXPERIMENT:
+  NAME: "kl_norm_TLoss_v2,res100,mv2"
+  PROJECT: "face_recognition distillation"
+  LOG_DIR: "./log/"
+DISTILLER:
+  TYPE: "KD+logit stand"
+  CLASS: "fcd"
+  TLoss: 'v3'
+  TEACHER: "ResNet100"
+  STUDENT: "MobileNetV2"
+DATASET:
+  NAME: "MS1MV3"
+  DATA_DIR: "/data/tx/MS1MV3"
+  BATCH_SIZE: 512
+  NUM_WORKERS: 8
+  NUM_CLASSES: 93431
+  NUM_IMAGES: 5179510
+SOLVER:
+  TEACHER_PTH: "./model/data/res100_backbone.pth"
+  EPOCHS: 40
+  LR_SCHEDULER: "WarmupCosineAnnealingLR" # ['StepScaleLR', 'WarmupCosineAnnealingLR', 'WarmupLinearLR', 'WarmupPowerLR']
+  MAX_LR: 0.1
+  MIN_LR: 0.00000001
+  WARMUP_EPOCH: 1
+  WEIGHT_DECAY: 0.0005
+  MOMENTUM: 0.9
+  FP16: True
+  TYPE: "SGD"
+RESUME:
+  IS_RESUME: False
+  RESUME_EPOCH: 60
+  RESUME_PATH: "/home/power/tx/TFace/log/kl_norm_TLoss_v2,res100,mv2_11-25_09-14"
